@@ -20,7 +20,7 @@ date --date="$(aws ec2 describe-images --image-ids ami-something --output text |
 > The full list of AMIs should be printed on the final output - the old ones should be highlighted yellow, new ones - by green colors.
 
 Achieved by parsing creation date of the AMI and converting it to timestamp. Image considers to become old if it's creation time became older then one day.
-Text color highlight achieved by using ANSI escape codes.
+Text color highlights implemented by using ANSI escape codes.
 ```
 RED='\033[0;31m'
 GREEN='\033[1;32m'
