@@ -22,7 +22,7 @@ if [ -n "$INSTANCE" ]; then
     done
 fi
 
-# Delete old AMIs
+# Delete old images
 
 AMIID=( `aws ec2 describe-images --filters "Name=is-public,Values=false" --output text | grep IMAGES | awk '{print $6}'` )
 if [ -n "$AMIID" ]; then
@@ -37,7 +37,7 @@ if [ -n "$AMIID" ]; then
     done
 fi
 
-# List instances
+# List images
 
 if [ -n "$AMIID" ]; then
   for i in "${AMIID[@]}"
