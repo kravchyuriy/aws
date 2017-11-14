@@ -39,8 +39,9 @@ fi
 
 # List images
 
-if [ -n "$AMIID" ]; then
-  for i in "${AMIID[@]}"
+AMIIDNEW=( `aws ec2 describe-images --filters "Name=is-public,Values=false" --output text | grep IMAGES | awk '{print $6}'` )
+if [ -n "$AMIIDNEW" ]; then
+  for i in "${AMIIDNEW[@]}"
     do
       CREATETIME="$(date --date="$(aws ec2 describe-images --image-ids $i --output text | grep IMAGES | awk '{print $3}' | cut -d'T' -f1)" +"%s")"
       AMINAME="$(aws ec2 describe-images --image-ids $i --output text | grep IMAGES | awk '{print $9}')"
